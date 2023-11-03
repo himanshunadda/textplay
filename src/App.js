@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import Navbar from './components/Navbar';
 import './App.css';
+import { useState } from 'react';
+import TextArea from './components/TextArea';
+import About from './components/About';
+import {BrowserRouter,Routes,Route} from "react-router-dom";
 
 function App() {
+  const [mode,setMode] = useState("light");
   return (
+    <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Navbar title = "textplay" mode = {mode} setMode = {setMode}/>
+      <Routes>
+        <Route path = "/" element = {<TextArea mode = {mode} setMode = {setMode}/>}></Route>
+      
+      {/*  */}
+      <Route path = "/about" element = { <About mode = {mode} setMode = {setMode}/>}></Route>
+     
+      </Routes>
     </div>
+    </BrowserRouter>
   );
 }
 
